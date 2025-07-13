@@ -123,7 +123,7 @@ AlgoWays is released under the AGPL V3.0 License. See the `LICENSE` file for mor
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=marketcalls/algoways&type=Date)](https://star-history.com/#marketcalls/algoways&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=wct/algoways&type=Date)](https://star-history.com/#wct/algoways&Date)
 
 ## Disclaimer
 

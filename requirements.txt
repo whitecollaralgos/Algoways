@@ -111,3 +111,4 @@ wsproto==1.2.0
 WTForms==3.1.2
 zipp==3.19.2
 zmq==0.0.0
+xts-api-client==0.1.19

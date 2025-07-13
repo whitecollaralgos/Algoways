@@ -42,7 +42,7 @@ Before diving in, here's what powers AlgoWays:
 
 1. **Fork the Repository**
    
-   Click the "Fork" button on the [AlgoWays GitHub repository](https://github.com/marketcalls/algoways) to create your own copy.
+   Click the "Fork" button on the [AlgoWays GitHub repository](https://github.com/wct/algoways) to create your own copy.
 
 2. **Clone Your Fork**
    ```bash
@@ -52,7 +52,7 @@ Before diving in, here's what powers AlgoWays:
 
 3. **Add Upstream Remote**
    ```bash
-   git remote add upstream https://github.com/marketcalls/algoways.git
+   git remote add upstream https://github.com/wct/algoways.git
    ```
 
 4. **Install Python Dependencies**
@@ -180,7 +180,7 @@ git push origin feature/your-feature-name
 ### For First-Time Contributors
 
 - **Documentation**: Improve README, add tutorials, fix typos
-- **Bug Fixes**: Check the [issues](https://github.com/marketcalls/algoways/issues) labeled "good first issue"
+- **Bug Fixes**: Check the [issues](https://github.com/wct/algoways/issues) labeled "good first issue"
 - **Examples**: Add new strategy examples in `/strategies`
 - **UI Improvements**: Enhance the user interface with better styling or UX
 
@@ -342,7 +342,7 @@ Happy coding, and welcome to the AlgoWays community! 🚀
 
 ## Quick Links
 
-- [Project Repository](https://github.com/marketcalls/algoways)
-- [Issue Tracker](https://github.com/marketcalls/algoways/issues)
+- [Project Repository](https://github.com/wct/algoways)
+- [Issue Tracker](https://github.com/wct/algoways/issues)
 - [Documentation](https://docs.algoways.in)
 - [Discord Community](https://discord.com/invite/UPh7QPsNhP)

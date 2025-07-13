@@ -19,7 +19,7 @@ Before installing AlgoWays, ensure you have the following prerequisites installe
 2. **Clone the Repository**: 
    Open the VS Code Terminal and clone the AlgoWays repository:
    ```bash
-   git clone https://github.com/marketcalls/algoways
+   git clone https://github.com/wct/algoways
    ```
 
 3. **Install Python Dependencies**: 

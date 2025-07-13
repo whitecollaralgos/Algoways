@@ -131,6 +131,6 @@ The following features have been removed for security reasons:
 
 ## Contributing
 
-This Playground is a living feature. If you have ideas for improvements or find a bug, feel free to open an issue or submit a pull request to the main [AlgoWays repository](https://github.com/marketcalls/algoways).
+This Playground is a living feature. If you have ideas for improvements or find a bug, feel free to open an issue or submit a pull request to the main [AlgoWays repository](https://github.com/wct/algoways).
 
 **Security-related contributions are especially welcome!**

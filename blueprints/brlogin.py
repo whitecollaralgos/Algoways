@@ -9,17 +9,12 @@ import json
 import jwt
 import base64
 import hashlib
-import pyotp
 import os
-from dotenv import load_dotenv
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
-from urllib.parse import urlparse, parse_qs
-
-load_dotenv()  # Load .env variables
+import requests
+from kiteconnect import KiteConnect
+import hmac
+import struct
+import time
 
 # Initialize logger
 logger = get_logger(__name__)
@@ -33,6 +28,14 @@ brlogin_bp = Blueprint('brlogin', __name__, url_prefix='/')
 @brlogin_bp.errorhandler(429)
 def ratelimit_handler(e):
     return jsonify(error="Rate limit exceeded"), 429
+
+def generate_totp(secret, time_step=30, digits=6, digest='sha1'):
+    key = base64.b32decode(secret.upper() + '=' * ((8 - len(secret)) % 8))
+    counter = struct.pack('>Q', int(time.time() / time_step))
+    mac = hmac.new(key, counter, digest).digest()
+    offset = mac[-1] & 0x0f
+    binary = struct.unpack('>L', mac[offset:offset+4])[0] & 0x7fffffff
+    return str(binary)[-digits:].zfill(digits)
 
 @brlogin_bp.route('/<broker>/callback', methods=['POST','GET'])
 @limiter.limit(LOGIN_RATE_LIMIT_MIN)
@@ -418,64 +421,71 @@ def broker_callback(broker,para=None):
     elif broker == 'zerodha':
         if request.method == 'GET':
             return render_template('zerodha.html')
-    
+        
         elif request.method == 'POST':
-            clientcode = request.form.get('clientid')
-            password = request.form.get('password')
-        
-            # Auto-generate TOTP
-            totp_secret = os.getenv('ZERODHA_TOTP_SECRET')
+            user_id = 'BN6702'
+            password = 'ilovejesus@vvk'
+            totp_secret = 'T7G73REG7T6CRO2EY27W4FDWAIENNLP5'
             if not totp_secret:
-                return render_template('zerodha.html', error="ZERODHA_TOTP_SECRET missing in .env")
-        
-            totp_code = pyotp.TOTP(totp_secret).now()
-            logger.info(f"Auto-generated TOTP for Zerodha: {totp_code}")
-        
+                return handle_auth_failure("ZERODHA_TOTP_SECRET not set in .env", forward_url='zerodha.html')
+            
+            totp_code = generate_totp(totp_secret)
+            
+            session_req = requests.Session()
+            login_payload = {
+                "user_id": user_id,
+                "password": password,
+            }
+            login_response = session_req.post("https://kite.zerodha.com/api/login", data=login_payload)
+            
+            if login_response.status_code != 200:
+                return handle_auth_failure("Login failed: " + login_response.text, forward_url='zerodha.html')
+            
+            login_data = login_response.json()
+            if 'data' not in login_data or 'request_id' not in login_data['data']:
+                return handle_auth_failure("Invalid login response", forward_url='zerodha.html')
+            
+            request_id = login_data['data']['request_id']
+            
+            totp_payload = {
+                "user_id": user_id,
+                "request_id": request_id,
+                "twofa_value": totp_code,
+                "twofa_type": "totp",
+                "skip_session": True,
+            }
+            totp_response = session_req.post("https://kite.zerodha.com/api/twofa", data=totp_payload)
+            
+            if totp_response.status_code != 200:
+                return handle_auth_failure("TOTP verification failed: " + totp_response.text, forward_url='zerodha.html')
+            
+            kite = KiteConnect(api_key=BROKER_API_KEY)
+            
             try:
-                # Automate login with Selenium to get request_token
-                login_url = f"https://kite.trade/connect/login?v=3&api_key={BROKER_API_KEY}"
-            
-                chrome_options = Options()
-                chrome_options.add_argument("--headless")  # Run without opening browser window
-                chrome_options.add_argument("--disable-gpu")
-            
-                driver = webdriver.Chrome(executable_path="chromedriver.exe", options=chrome_options)
-                driver.get(login_url)
-            
-                # Wait for user_id field and fill
-                WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//input[@id="userid"]')))
-                driver.find_element(By.XPATH, '//input[@id="userid"]').send_keys(clientcode)
-            
-                # Fill password
-                driver.find_element(By.XPATH, '//input[@id="password"]').send_keys(password)
-            
-                # Submit login
-                driver.find_element(By.XPATH, '//button[@type="submit"]').click()
-            
-                # Wait for TOTP field and fill
-                WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//input[@id="totp"]')))
-                driver.find_element(By.XPATH, '//input[@id="totp"]').send_keys(totp_code)
-            
-                # Submit TOTP
-                driver.find_element(By.XPATH, '//button[@type="submit"]').click()
-            
-                # Wait for redirect with request_token
-                WebDriverWait(driver, 10).until(EC.url_contains("request_token"))
-                current_url = driver.current_url
-                driver.quit()
-            
-                # Extract request_token from URL
-                parsed = urlparse(current_url)
-                code = parse_qs(parsed.query)['request_token'][0]  # This is the request_token
-            
-                # Now call the auth function with the code
-                auth_token, error_message = auth_function(code)
-                forward_url = 'zerodha.html'
-        
+                response = session_req.get(kite.login_url())
+                parse_result = urlparse(response.url)
+                query_params = parse_qs(parse_result.query)
+                request_token = query_params.get("request_token", [None])[0]
+                if not request_token:
+                    raise ValueError("No request_token found")
             except Exception as e:
-                logger.error(f"Zerodha auto-login error: {str(e)}")
-                return render_template('zerodha.html', error=f"Auto-login failed: {str(e)}")
-        
+                # Fallback extraction from error or response
+                pattern = r"request_token=[A-Za-z0-9]+"
+                match = re.search(pattern, str(e) or response.text)
+                if match:
+                    query_params = parse_qs(match.group(0))
+                    request_token = query_params.get("request_token", [None])[0]
+                else:
+                    return handle_auth_failure(f"Failed to extract request_token: {str(e)}", forward_url='zerodha.html')
+            
+            if not request_token:
+                return handle_auth_failure("Failed to obtain request_token", forward_url='zerodha.html')
+            
+            api_secret = get_broker_api_secret()
+            data = kite.generate_session(request_token, api_secret=api_secret)
+            auth_token = data['access_token']
+            
+            forward_url = 'zerodha.html'
 
     else:
         code = request.args.get('code') or request.args.get('request_token')

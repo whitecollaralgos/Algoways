@@ -251,7 +251,7 @@ check_status "Failed to create base directory"
 
 # Clone repository
 log_message "\nCloning AlgoWays repository..." "$BLUE"
-sudo git clone https://github.com/marketcalls/algoways.git $OPENALGO_PATH
+sudo git clone https://github.com/wct/algoways.git $OPENALGO_PATH
 check_status "Failed to clone AlgoWays repository"
 
 # Create virtual environment using uv
