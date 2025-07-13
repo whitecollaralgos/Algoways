@@ -1,6 +1,6 @@
-# OpenAlgo API Analyzer
+# AlgoWays API Analyzer
 
-The API Analyzer is a powerful feature in OpenAlgo that helps both traders and developers test, validate, and monitor their trading integrations in real-time.
+The API Analyzer is a powerful feature in AlgoWays that helps both traders and developers test, validate, and monitor their trading integrations in real-time.
 
 ## For Traders
 

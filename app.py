@@ -241,8 +241,8 @@ if __name__ == '__main__':
     port = int(os.getenv('FLASK_PORT', 5000))  # Default to 5000 if not set
     debug = os.getenv('FLASK_DEBUG', 'False').lower() in ('true', '1', 't')  # Default to False if not set
 
-    # Log the OpenAlgo access URL with enhanced styling
+    # Log the AlgoWays access URL with enhanced styling
     url = f"http://{host_ip}:{port}"
-    log_startup_banner(logger, "OpenAlgo is running!", url)
+    log_startup_banner(logger, "AlgoWays is running!", url)
 
     socketio.run(app, host=host_ip, port=port, debug=debug)

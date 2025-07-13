@@ -4,7 +4,7 @@ Mapping utilities and capability registry for Flattrade broker WebSocket integra
 from typing import Dict, Any, List, Optional
 
 class FlattradeExchangeMapper:
-    """Map OpenAlgo exchange codes to Flattrade format and vice versa"""
+    """Map AlgoWays exchange codes to Flattrade format and vice versa"""
     OA_TO_FLATTRD: Dict[str, str] = {
         'NSE': 'NSE',
         'BSE': 'BSE',

@@ -1,7 +1,7 @@
 from utils.logging import get_logger
 
 """
-Flattrade WebSocket client for OpenAlgo integration
+Flattrade WebSocket client for AlgoWays integration
 Handles connection, authentication, subscription, and message parsing.
 """
 import json

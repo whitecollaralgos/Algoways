@@ -1,8 +1,8 @@
 """
-OpenAlgo WebSocket Market Depth Example
+AlgoWays WebSocket Market Depth Example
 """
 
-from openalgo import api
+from algoways import api
 import time
 
 # Initialize feed client with explicit parameters

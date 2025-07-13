@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the comprehensive plan for implementing an enhanced trade management module in OpenAlgo that adds stop-loss, target, and trailing stop-loss functionality with real-time LTP monitoring.
+This document outlines the comprehensive plan for implementing an enhanced trade management module in AlgoWays that adds stop-loss, target, and trailing stop-loss functionality with real-time LTP monitoring.
 
 ## Technical Implementation Details
 
@@ -534,7 +534,7 @@ class TradeMonitorWebSocketClient:
 
 ### 4. API Endpoints
 
-Following the existing OpenAlgo REST API patterns, all endpoints will:
+Following the existing AlgoWays REST API patterns, all endpoints will:
 - Use POST method exclusively
 - Require `apikey` field for authentication
 - Be organized under `/api/v1/` namespace
@@ -1466,7 +1466,7 @@ Add to existing strategy view (`templates/strategy/view_strategy.html`):
 
 ### 12. Leveraging Existing Smart Order Functionality
 
-The trade management system takes full advantage of OpenAlgo's existing `placesmartorder` capability:
+The trade management system takes full advantage of AlgoWays's existing `placesmartorder` capability:
 
 #### Benefits of Using Smart Orders for Exits:
 1. **Guaranteed Full Position Exit**: By setting `quantity=0` and `position_size=0`, the system ensures complete position closure
@@ -1506,7 +1506,7 @@ The implementation ensures complete backward compatibility:
 5. **Order Flow**: Hooks into existing flow without disrupting it
 6. **Smart Order API**: Leverages existing functionality without modifications
 
-Users can continue using OpenAlgo exactly as before, with trade management as an optional enhancement.
+Users can continue using AlgoWays exactly as before, with trade management as an optional enhancement.
 
 ### 14. Dual-Level Risk Management Example
 
@@ -1646,8 +1646,8 @@ Portfolio Settings:
 
 ## Summary
 
-This enhanced trade management module transforms OpenAlgo from a simple order execution platform to a comprehensive trading system with automated risk management. The modular design allows for incremental implementation while maintaining system stability.
+This enhanced trade management module transforms AlgoWays from a simple order execution platform to a comprehensive trading system with automated risk management. The modular design allows for incremental implementation while maintaining system stability.
 
-The key innovation is the server-side monitoring of trades with real-time price tracking, eliminating the need for traders to constantly monitor positions. This professional-grade feature set brings OpenAlgo closer to institutional trading platforms while maintaining its open-source accessibility.
+The key innovation is the server-side monitoring of trades with real-time price tracking, eliminating the need for traders to constantly monitor positions. This professional-grade feature set brings AlgoWays closer to institutional trading platforms while maintaining its open-source accessibility.
 
-The implementation leverages existing infrastructure wherever possible, ensuring minimal disruption while adding powerful new capabilities. By following OpenAlgo's established patterns and conventions, the new features will feel native to the platform.
+The implementation leverages existing infrastructure wherever possible, ensuring minimal disruption while adding powerful new capabilities. By following AlgoWays's established patterns and conventions, the new features will feel native to the platform.

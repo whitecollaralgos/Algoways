@@ -1,14 +1,14 @@
-# Contributing to OpenAlgo
+# Contributing to AlgoWays
 
-Welcome to OpenAlgo! We're thrilled that you're interested in contributing to our open-source algorithmic trading platform. OpenAlgo bridges traders with major trading platforms, and your contributions help make algotrading accessible to everyone.
+Welcome to AlgoWays! We're thrilled that you're interested in contributing to our open-source algorithmic trading platform. AlgoWays bridges traders with major trading platforms, and your contributions help make algotrading accessible to everyone.
 
 ## 🎯 Our Mission
 
-OpenAlgo is built by traders, for traders. We believe in democratizing algorithmic trading by providing a broker-agnostic, open-source platform that puts control back in the hands of traders. Every contribution, no matter how small, helps us achieve this mission.
+AlgoWays is built by traders, for traders. We believe in democratizing algorithmic trading by providing a broker-agnostic, open-source platform that puts control back in the hands of traders. Every contribution, no matter how small, helps us achieve this mission.
 
 ## 🛠️ Technology Stack
 
-Before diving in, here's what powers OpenAlgo:
+Before diving in, here's what powers AlgoWays:
 
 ### Backend
 - **Python 3.12+** - Core programming language
@@ -42,17 +42,17 @@ Before diving in, here's what powers OpenAlgo:
 
 1. **Fork the Repository**
    
-   Click the "Fork" button on the [OpenAlgo GitHub repository](https://github.com/marketcalls/openalgo) to create your own copy.
+   Click the "Fork" button on the [AlgoWays GitHub repository](https://github.com/marketcalls/algoways) to create your own copy.
 
 2. **Clone Your Fork**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/openalgo.git
-   cd openalgo
+   git clone https://github.com/YOUR_USERNAME/algoways.git
+   cd algoways
    ```
 
 3. **Add Upstream Remote**
    ```bash
-   git remote add upstream https://github.com/marketcalls/openalgo.git
+   git remote add upstream https://github.com/marketcalls/algoways.git
    ```
 
 4. **Install Python Dependencies**
@@ -180,7 +180,7 @@ git push origin feature/your-feature-name
 ### For First-Time Contributors
 
 - **Documentation**: Improve README, add tutorials, fix typos
-- **Bug Fixes**: Check the [issues](https://github.com/marketcalls/openalgo/issues) labeled "good first issue"
+- **Bug Fixes**: Check the [issues](https://github.com/marketcalls/algoways/issues) labeled "good first issue"
 - **Examples**: Add new strategy examples in `/strategies`
 - **UI Improvements**: Enhance the user interface with better styling or UX
 
@@ -197,7 +197,7 @@ git push origin feature/your-feature-name
 Understanding the codebase structure will help you contribute effectively:
 
 ```
-openalgo/
+algoways/
 ├── broker/           # Broker-specific implementations
 ├── blueprints/       # Flask blueprints for web routes
 ├── database/         # Database models and utilities
@@ -322,7 +322,7 @@ Found a bug? Here's how to report it:
 We value all contributions! Contributors will be:
 - Listed in our contributors section
 - Mentioned in release notes
-- Part of the OpenAlgo community
+- Part of the AlgoWays community
 
 ## 📞 Getting Help
 
@@ -330,19 +330,19 @@ Need assistance? We're here to help:
 
 - **Discord**: Join our [Discord server](https://discord.com/invite/UPh7QPsNhP)
 - **GitHub Discussions**: Ask questions in the Discussions tab
-- **Documentation**: Check [docs.openalgo.in](https://docs.openalgo.in)
+- **Documentation**: Check [docs.algoways.in](https://docs.algoways.in)
 
 ## 🎉 Thank You!
 
-Thank you for contributing to OpenAlgo! Your efforts help democratize algorithmic trading and empower traders worldwide. Every line of code, documentation improvement, and bug report makes a difference.
+Thank you for contributing to AlgoWays! Your efforts help democratize algorithmic trading and empower traders worldwide. Every line of code, documentation improvement, and bug report makes a difference.
 
-Happy coding, and welcome to the OpenAlgo community! 🚀
+Happy coding, and welcome to the AlgoWays community! 🚀
 
 ---
 
 ## Quick Links
 
-- [Project Repository](https://github.com/marketcalls/openalgo)
-- [Issue Tracker](https://github.com/marketcalls/openalgo/issues)
-- [Documentation](https://docs.openalgo.in)
+- [Project Repository](https://github.com/marketcalls/algoways)
+- [Issue Tracker](https://github.com/marketcalls/algoways/issues)
+- [Documentation](https://docs.algoways.in)
 - [Discord Community](https://discord.com/invite/UPh7QPsNhP)

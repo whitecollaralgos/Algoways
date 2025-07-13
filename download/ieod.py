@@ -3,7 +3,7 @@ import logging
 import os
 import time
 import gc
-from openalgo import api
+from algoways import api
 from datetime import datetime, timedelta
 
 # Initialize the API client

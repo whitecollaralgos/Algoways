@@ -1,16 +1,16 @@
-# OpenAlgo Design Documentation
+# AlgoWays Design Documentation
 
 ## Introduction
 
-Welcome to the design documentation for OpenAlgo, a broker-agnostic algorithmic trading platform API.
+Welcome to the design documentation for AlgoWays, a broker-agnostic algorithmic trading platform API.
 
 ### Purpose
 
-This documentation aims to provide a comprehensive understanding of the OpenAlgo system architecture, core components, design patterns, data flows, and operational considerations. It serves as a guide for developers, architects, and maintainers involved in the development and extension of the platform.
+This documentation aims to provide a comprehensive understanding of the AlgoWays system architecture, core components, design patterns, data flows, and operational considerations. It serves as a guide for developers, architects, and maintainers involved in the development and extension of the platform.
 
 ### Overview
 
-OpenAlgo provides a RESTful API interface built with Flask, allowing users and automated systems to:
+AlgoWays provides a RESTful API interface built with Flask, allowing users and automated systems to:
 *   Connect to various stock brokers.
 *   Manage trading accounts.
 *   Retrieve market data.
@@ -57,7 +57,7 @@ This documentation is structured into modular sections, navigable through the si
 ## Recent Architecture Enhancements
 
 ### WebSocket Infrastructure
-OpenAlgo now features a comprehensive WebSocket infrastructure that enables real-time market data streaming from multiple brokers. Key components include:
+AlgoWays now features a comprehensive WebSocket infrastructure that enables real-time market data streaming from multiple brokers. Key components include:
 
 - **WebSocket Proxy Server**: Central hub for managing client connections and routing market data
 - **Broker Adapter Factory**: Dynamic loading and management of broker-specific WebSocket adapters

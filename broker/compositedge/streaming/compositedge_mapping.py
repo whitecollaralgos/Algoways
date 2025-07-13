@@ -1,10 +1,10 @@
 import logging
 
 class CompositedgeExchangeMapper:
-    """Maps between OpenAlgo exchange codes and Compositedge XTS specific exchange types"""
+    """Maps between AlgoWays exchange codes and Compositedge XTS specific exchange types"""
     
     # Exchange type mapping for Compositedge XTS broker
-    # Format: {OpenAlgo_Exchange: Compositedge_Exchange_Code}
+    # Format: {AlgoWays_Exchange: Compositedge_Exchange_Code}
     # Based on Compositedge API documentation:
     # "NSECM": 1, "NSEFO": 2, "NSECD": 3, "BSECM": 11, "BSEFO": 12, "MCXFO": 51
     EXCHANGE_TYPES = {
@@ -31,8 +31,8 @@ class CompositedgeExchangeMapper:
         'MCXFO': 51      # MCX F&O
     }
     
-    # Reverse mapping for converting Compositedge exchange codes to OpenAlgo format
-    # Format: {Compositedge_Exchange_Code: OpenAlgo_Exchange}
+    # Reverse mapping for converting Compositedge exchange codes to AlgoWays format
+    # Format: {Compositedge_Exchange_Code: AlgoWays_Exchange}
     REVERSE_EXCHANGE_TYPES = {
         1: 'NSE',       # NSECM
         2: 'NFO',       # NSEFO
@@ -45,7 +45,7 @@ class CompositedgeExchangeMapper:
     @staticmethod
     def get_exchange_type(exchange):
         """
-        Convert OpenAlgo exchange code to Compositedge XTS specific exchange type
+        Convert AlgoWays exchange code to Compositedge XTS specific exchange type
         
         Args:
             exchange: Exchange code (e.g., 'NSE', 'BSE', 'NSEFO')
@@ -64,7 +64,7 @@ class CompositedgeExchangeMapper:
         # Mapping based on Compositedge API documentation:
         # "NSECM": 1, "NSEFO": 2, "NSECD": 3, "BSECM": 11, "BSEFO": 12, "MCXFO": 51
         all_exchange_mappings = {
-            # OpenAlgo standard codes
+            # AlgoWays standard codes
             'NSE': 1,        # NSE Cash Market
             'NFO': 2,        # NSE F&O
             'CDS': 3,        # NSE Currency Derivatives
@@ -105,15 +105,15 @@ class CompositedgeExchangeMapper:
         return 1
     
     @staticmethod
-    def get_openalgo_exchange(compositedge_code):
+    def get_algoways_exchange(compositedge_code):
         """
-        Convert Compositedge XTS exchange code to OpenAlgo exchange code
+        Convert Compositedge XTS exchange code to AlgoWays exchange code
         
         Args:
             compositedge_code (int): Compositedge exchange code
             
         Returns:
-            str: OpenAlgo exchange code
+            str: AlgoWays exchange code
         """
         return CompositedgeExchangeMapper.REVERSE_EXCHANGE_TYPES.get(compositedge_code, 'NSE')  # Default to NSE if not found
 

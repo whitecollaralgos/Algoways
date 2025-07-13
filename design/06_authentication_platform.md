@@ -1,10 +1,10 @@
 # Platform Authentication & Authorization
 
-This section describes how users authenticate with the OpenAlgo platform itself (Web UI and API) and how authorization is managed, distinct from authenticating with external brokers.
+This section describes how users authenticate with the AlgoWays platform itself (Web UI and API) and how authorization is managed, distinct from authenticating with external brokers.
 
 ## Authentication Mechanisms
 
-OpenAlgo supports multiple ways for users/clients to authenticate:
+AlgoWays supports multiple ways for users/clients to authenticate:
 
 1.  **Web UI Session Authentication (Username/Password):**
     *   **Library:** Uses `Flask-Login` (implied by session usage and typical Flask patterns) and `Flask-Bcrypt` or `Argon2` (explicitly used in `database/auth_db.py` and `database/user_db.py`) for password hashing.
@@ -19,7 +19,7 @@ OpenAlgo supports multiple ways for users/clients to authenticate:
     *   **Password Reset:** A password reset flow involving email and TOTP verification is implemented in `auth.reset_password`.
 
 2.  **API Key Authentication:**
-    *   **Purpose:** Allows programmatic access to the OpenAlgo API by external applications or scripts.
+    *   **Purpose:** Allows programmatic access to the AlgoWays API by external applications or scripts.
     *   **Generation:** Users can generate/manage their API keys via the Web UI (`/apikey` route handled by `blueprints/apikey.py`). Secure random keys are generated using `secrets.token_hex`.
     *   **Storage:** API keys are stored securely in the `api_keys` table (`database/auth_db.py`):
         *   A **hash** of the key (peppered with `API_KEY_PEPPER` and hashed using Argon2 `ph.hash`) is stored for verification (`api_key_hash`).

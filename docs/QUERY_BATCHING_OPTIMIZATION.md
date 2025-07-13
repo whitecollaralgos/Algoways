@@ -1,8 +1,8 @@
-# Query Batching Optimization Plan for OpenAlgo
+# Query Batching Optimization Plan for AlgoWays
 
 ## Executive Summary
 
-This document outlines a comprehensive plan to implement query batching for symbol lookups in OpenAlgo, addressing performance bottlenecks identified in the codebase analysis. The optimization will reduce database queries by 70-80% and improve response times by 5-6x for multi-symbol operations.
+This document outlines a comprehensive plan to implement query batching for symbol lookups in AlgoWays, addressing performance bottlenecks identified in the codebase analysis. The optimization will reduce database queries by 70-80% and improve response times by 5-6x for multi-symbol operations.
 
 ## Current State Analysis
 
@@ -458,7 +458,7 @@ class BatchingMonitor:
 
 **Document Version**: 1.0  
 **Created**: 2025-06-28  
-**Author**: OpenAlgo Development Team  
+**Author**: AlgoWays Development Team  
 **Review Date**: 2025-07-28  
 
 **Status**: Planning Phase  

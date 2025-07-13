@@ -1,4 +1,4 @@
-# OpenAlgo Installation Guide
+# AlgoWays Installation Guide
 
 ## Prerequisites
 
@@ -50,11 +50,11 @@
 ssh user@your_server_ip
 
 # Create a directory for installation
-mkdir -p ~/openalgo-install
-cd ~/openalgo-install
+mkdir -p ~/algoways-install
+cd ~/algoways-install
 
 # Download the installation script
-wget https://raw.githubusercontent.com/marketcalls/openalgo/main/install/install.sh
+wget https://raw.githubusercontent.com/marketcalls/algoways/main/install/install.sh
 
 # Make the script executable
 chmod +x install.sh
@@ -74,13 +74,13 @@ The script will interactively prompt you for:
 The installation process will:
 - Install required packages
 - Configure Nginx with SSL
-- Set up the OpenAlgo application
+- Set up the AlgoWays application
 - Create systemd service with unique name based on domain and broker
 - Generate installation logs in the logs directory
 
 #### Multi-Domain Deployment
 The installation script supports deploying multiple instances on the same server:
-- Each deployment gets a unique service name (e.g., openalgo-yourdomain-broker)
+- Each deployment gets a unique service name (e.g., algoways-yourdomain-broker)
 - Separate configuration files and directories for each deployment
 - Individual log files for each installation in the logs directory
 - Independent SSL certificates for each domain
@@ -112,10 +112,10 @@ After installation completes, verify each deployment:
 1. **Check Service Status**
    ```bash
    # Example for Fyers deployment
-   sudo systemctl status openalgo-fyers-yourdomain-fyers
+   sudo systemctl status algoways-fyers-yourdomain-fyers
    
    # Example for Zerodha deployment
-   sudo systemctl status openalgo-zerodha-yourdomain-zerodha
+   sudo systemctl status algoways-zerodha-yourdomain-zerodha
    ```
 
 2. **Verify Nginx Configuration**
@@ -162,12 +162,12 @@ After installation completes, verify each deployment:
    Example scenario: Managing multiple broker deployments
    ```bash
    # Example 1: Fyers deployment on fyers.yourdomain.com
-   sudo journalctl -u openalgo-fyers-yourdomain-fyers    # View logs
-   sudo systemctl restart openalgo-fyers-yourdomain-fyers # Restart service
+   sudo journalctl -u algoways-fyers-yourdomain-fyers    # View logs
+   sudo systemctl restart algoways-fyers-yourdomain-fyers # Restart service
    
    # Example 2: Zerodha deployment on zerodha.yourdomain.com
-   sudo journalctl -u openalgo-zerodha-yourdomain-zerodha # View logs
-   sudo systemctl restart openalgo-zerodha-yourdomain-zerodha # Restart service
+   sudo journalctl -u algoways-zerodha-yourdomain-zerodha # View logs
+   sudo systemctl restart algoways-zerodha-yourdomain-zerodha # Restart service
    ```
 
 3. **Nginx Issues**
@@ -198,30 +198,30 @@ After installation completes, verify each deployment:
 
 1. **Service Management Examples**
    ```bash
-   # List all OpenAlgo services
-   systemctl list-units "openalgo-*"
+   # List all AlgoWays services
+   systemctl list-units "algoways-*"
    
    # Example outputs:
-   # openalgo-fyers-yourdomain-fyers.service    loaded active running
-   # openalgo-zerodha-yourdomain-zerodha.service loaded active running
+   # algoways-fyers-yourdomain-fyers.service    loaded active running
+   # algoways-zerodha-yourdomain-zerodha.service loaded active running
    
    # Restart specific deployment
-   sudo systemctl restart openalgo-fyers-yourdomain-fyers
+   sudo systemctl restart algoways-fyers-yourdomain-fyers
    
    # Check status of specific deployment
-   sudo systemctl status openalgo-zerodha-yourdomain-zerodha
+   sudo systemctl status algoways-zerodha-yourdomain-zerodha
    ```
 
 2. **Log Management Examples**
    ```bash
    # View real-time logs for Fyers deployment
-   sudo journalctl -f -u openalgo-fyers-yourdomain-fyers
+   sudo journalctl -f -u algoways-fyers-yourdomain-fyers
    
    # View last 100 lines of Zerodha deployment logs
-   sudo journalctl -n 100 -u openalgo-zerodha-yourdomain-zerodha
+   sudo journalctl -n 100 -u algoways-zerodha-yourdomain-zerodha
    
    # View logs since last hour for specific deployment
-   sudo journalctl --since "1 hour ago" -u openalgo-fyers-yourdomain-fyers
+   sudo journalctl --since "1 hour ago" -u algoways-fyers-yourdomain-fyers
    ```
 
 3. **Nginx Configuration Examples**
@@ -240,14 +240,14 @@ After installation completes, verify each deployment:
 4. **Installation Directory Examples**
    ```bash
    # List deployment directories
-   ls -l /var/python/openalgo-flask/
+   ls -l /var/python/algoways-flask/
    
    # Example structure:
-   # /var/python/openalgo-flask/fyers-yourdomain-fyers/
-   # /var/python/openalgo-flask/zerodha-yourdomain-zerodha/
+   # /var/python/algoways-flask/fyers-yourdomain-fyers/
+   # /var/python/algoways-flask/zerodha-yourdomain-zerodha/
    
    # Check specific deployment files
-   ls -l /var/python/openalgo-flask/fyers-yourdomain-fyers/
+   ls -l /var/python/algoways-flask/fyers-yourdomain-fyers/
    ```
 
 ## Security Notes
@@ -277,7 +277,7 @@ After installation completes, verify each deployment:
 ## Support
 
 For issues and support:
-- Check the [GitHub repository](https://github.com/marketcalls/openalgo)
+- Check the [GitHub repository](https://github.com/marketcalls/algoways)
 - Review the logs using commands provided above
 - Contact support with relevant log information
 

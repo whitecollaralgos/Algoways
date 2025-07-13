@@ -1,5 +1,5 @@
 {
-  "name": "openalgo",
+  "name": "algoways",
   "version": "1",
   "items": [
     {
@@ -486,7 +486,7 @@
   "environments": [],
   "brunoConfig": {
     "version": "1",
-    "name": "openalgo",
+    "name": "algoways",
     "type": "collection",
     "ignore": [
       "node_modules",

@@ -1,10 +1,10 @@
 import logging
 
 class JainamExchangeMapper:
-    """Maps between OpenAlgo exchange codes and Jainam XTS specific exchange types"""
+    """Maps between AlgoWays exchange codes and Jainam XTS specific exchange types"""
     
     # Exchange type mapping for Jainam XTS broker
-    # Format: {OpenAlgo_Exchange: Jainam_Exchange_Code}
+    # Format: {AlgoWays_Exchange: Jainam_Exchange_Code}
     # Based on Jainam API documentation:
     # "NSECM": 1, "NSEFO": 2, "NSECD": 3, "BSECM": 11, "BSEFO": 12, "MCXFO": 51
     EXCHANGE_TYPES = {
@@ -31,8 +31,8 @@ class JainamExchangeMapper:
         'MCXFO': 51      # MCX F&O
     }
     
-    # Reverse mapping for converting Jainam exchange codes to OpenAlgo format
-    # Format: {Jainam_Exchange_Code: OpenAlgo_Exchange}
+    # Reverse mapping for converting Jainam exchange codes to AlgoWays format
+    # Format: {Jainam_Exchange_Code: AlgoWays_Exchange}
     REVERSE_EXCHANGE_TYPES = {
         1: 'NSE',       # NSECM
         2: 'NFO',       # NSEFO
@@ -45,7 +45,7 @@ class JainamExchangeMapper:
     @staticmethod
     def get_exchange_type(exchange):
         """
-        Convert OpenAlgo exchange code to Jainam XTS specific exchange type
+        Convert AlgoWays exchange code to Jainam XTS specific exchange type
         
         Args:
             exchange: Exchange code (e.g., 'NSE', 'BSE', 'NSEFO')
@@ -64,7 +64,7 @@ class JainamExchangeMapper:
         # Mapping based on Jainam API documentation:
         # "NSECM": 1, "NSEFO": 2, "NSECD": 3, "BSECM": 11, "BSEFO": 12, "MCXFO": 51
         all_exchange_mappings = {
-            # OpenAlgo standard codes
+            # AlgoWays standard codes
             'NSE': 1,        # NSE Cash Market
             'NFO': 2,        # NSE F&O
             'CDS': 3,        # NSE Currency Derivatives
@@ -105,15 +105,15 @@ class JainamExchangeMapper:
         return 1
     
     @staticmethod
-    def get_openalgo_exchange(jainam_code):
+    def get_algoways_exchange(jainam_code):
         """
-        Convert Jainam XTS exchange code to OpenAlgo exchange code
+        Convert Jainam XTS exchange code to AlgoWays exchange code
         
         Args:
             jainam_code (int): Jainam exchange code
             
         Returns:
-            str: OpenAlgo exchange code
+            str: AlgoWays exchange code
         """
         return JainamExchangeMapper.REVERSE_EXCHANGE_TYPES.get(jainam_code, 'NSE')  # Default to NSE if not found
 

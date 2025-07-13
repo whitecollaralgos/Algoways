@@ -1,6 +1,6 @@
 # API Layer
 
-The API layer is the primary interface for interacting with the OpenAlgo platform. It handles incoming HTTP requests, routes them to the appropriate logic, processes data, and returns responses.
+The API layer is the primary interface for interacting with the AlgoWays platform. It handles incoming HTTP requests, routes them to the appropriate logic, processes data, and returns responses.
 
 ## Frameworks Used
 

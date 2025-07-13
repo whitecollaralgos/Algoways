@@ -2,7 +2,7 @@
 
 ## Architectural Style
 
-OpenAlgo employs a **Monolithic Application Architecture** with a **RESTful API** interface. The core logic, broker interactions, database management, and API endpoints are contained within a single Flask application process.
+AlgoWays employs a **Monolithic Application Architecture** with a **RESTful API** interface. The core logic, broker interactions, database management, and API endpoints are contained within a single Flask application process.
 
 Key characteristics:
 *   **Centralized Codebase:** All components reside within the same project structure.
@@ -60,7 +60,7 @@ graph TD
         WSClient[WebSocket Client]
     end
 
-    subgraph "OpenAlgo Application - Flask"
+    subgraph "AlgoWays Application - Flask"
         direction TB
         APILayer[API Layer - Flask-RESTX - Blueprints]
         Auth[Auth & Session Mgmt]

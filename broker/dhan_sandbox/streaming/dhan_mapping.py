@@ -1,11 +1,11 @@
 """
 Mapping utilities for Dhan broker integration.
-Provides exchange code mappings between OpenAlgo and Dhan formats.
+Provides exchange code mappings between AlgoWays and Dhan formats.
 """
 from typing import Dict
 
 # Exchange code mappings
-# OpenAlgo exchange code -> Dhan exchange code
+# AlgoWays exchange code -> Dhan exchange code
 OPENALGO_TO_DHAN_EXCHANGE = {
     "NSE": "NSE_EQ",
     "BSE": "BSE_EQ",
@@ -18,29 +18,29 @@ OPENALGO_TO_DHAN_EXCHANGE = {
     "BSE_INDEX": "IDX_I"
 }
 
-# Dhan exchange code -> OpenAlgo exchange code
+# Dhan exchange code -> AlgoWays exchange code
 DHAN_TO_OPENALGO_EXCHANGE = {v: k for k, v in OPENALGO_TO_DHAN_EXCHANGE.items()}
 
-def get_dhan_exchange(openalgo_exchange: str) -> str:
+def get_dhan_exchange(algoways_exchange: str) -> str:
     """
-    Convert OpenAlgo exchange code to Dhan exchange code.
+    Convert AlgoWays exchange code to Dhan exchange code.
     
     Args:
-        openalgo_exchange (str): Exchange code in OpenAlgo format
+        algoways_exchange (str): Exchange code in AlgoWays format
         
     Returns:
         str: Exchange code in Dhan format
     """
-    return OPENALGO_TO_DHAN_EXCHANGE.get(openalgo_exchange, openalgo_exchange)
+    return OPENALGO_TO_DHAN_EXCHANGE.get(algoways_exchange, algoways_exchange)
     
-def get_openalgo_exchange(dhan_exchange: str) -> str:
+def get_algoways_exchange(dhan_exchange: str) -> str:
     """
-    Convert Dhan exchange code to OpenAlgo exchange code.
+    Convert Dhan exchange code to AlgoWays exchange code.
     
     Args:
         dhan_exchange (str): Exchange code in Dhan format
         
     Returns:
-        str: Exchange code in OpenAlgo format
+        str: Exchange code in AlgoWays format
     """
     return DHAN_TO_OPENALGO_EXCHANGE.get(dhan_exchange, dhan_exchange)

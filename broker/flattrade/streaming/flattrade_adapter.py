@@ -3,7 +3,7 @@ from utils.logging import get_logger
 logger = get_logger(__name__)
 
 """
-Flattrade WebSocket adapter for OpenAlgo WebSocket proxy
+Flattrade WebSocket adapter for AlgoWays WebSocket proxy
 """
 import threading
 import sys
@@ -51,8 +51,8 @@ class FlattradeWebSocketAdapter(BaseBrokerWebSocketAdapter):
         # Flattrade: user_id and actid are the same, fetched from env
         self.user_id = os.getenv('BROKER_API_KEY', '').split(':::')[0]
         self.actid = self.user_id
-        # susertoken from DB for OpenAlgo username (not broker user)
-        self.logger.info(f"[DEBUG] Fetching susertoken for OpenAlgo username: {user_id}")
+        # susertoken from DB for AlgoWays username (not broker user)
+        self.logger.info(f"[DEBUG] Fetching susertoken for AlgoWays username: {user_id}")
         self.susertoken = get_auth_token(user_id)
         self.logger.info(f"[Flattrade Adapter] user_id: {self.user_id}, actid: {self.actid}, susertoken: {self.susertoken}")
         if not self.actid or not self.susertoken:
@@ -338,7 +338,7 @@ class FlattradeWebSocketAdapter(BaseBrokerWebSocketAdapter):
         return '#'.join(scrips) if len(scrips) > 1 else (scrips[0] if scrips else '')
 
     def _generate_topic(self, exchange: str, symbol: str, mode_str: str) -> str:
-        # Publish as {exchange}_{symbol}_{mode_str} to match OpenAlgo proxy expectation
+        # Publish as {exchange}_{symbol}_{mode_str} to match AlgoWays proxy expectation
         return f"{exchange}_{symbol}_{mode_str}"
 
     def _safe_float(self, value):

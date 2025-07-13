@@ -4,7 +4,7 @@ import time
 import pandas as pd
 from datetime import datetime, timedelta
 from sqlalchemy import create_engine, MetaData
-from openalgo import api
+from algoways import api
 from dotenv import load_dotenv
 
 # Load environment variables

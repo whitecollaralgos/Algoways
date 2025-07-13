@@ -166,4 +166,4 @@ Choose Action:
 **Options Trader**: Fixed ₹10,000 per trade, portfolio target ₹50,000
 **Multi-Strategy**: Different funds and risk levels per strategy
 
-This system transforms OpenAlgo into a professional-grade trading platform with institutional-level risk management capabilities, all while maintaining its user-friendly interface.
+This system transforms AlgoWays into a professional-grade trading platform with institutional-level risk management capabilities, all while maintaining its user-friendly interface.

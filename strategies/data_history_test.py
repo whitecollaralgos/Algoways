@@ -1,7 +1,7 @@
-from openalgo import api
+from algoways import api
 
 # Initialize the API client
-client = api(api_key='your_openalgo_api_key', host='http://127.0.0.1:5000')
+client = api(api_key='your_algoways_api_key', host='http://127.0.0.1:5000')
 
 # Fetch historical data for BHEL
 df = client.history(

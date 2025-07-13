@@ -1,7 +1,7 @@
 from utils.logging import get_logger
 
 """
-Shoonya WebSocket client for OpenAlgo integration
+Shoonya WebSocket client for AlgoWays integration
 Handles connection, authentication, subscription, and message parsing.
 """
 import json

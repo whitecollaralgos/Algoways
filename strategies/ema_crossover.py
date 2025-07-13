@@ -1,17 +1,17 @@
-from openalgo import api
+from algoways import api
 import pandas as pd
 import numpy as np
 import time
 import threading
 from datetime import datetime, timedelta
 
-# Get API key from openalgo portal
-api_key = 'your-openalgo-api-key'
+# Get API key from algoways portal
+api_key = 'your-algoways-api-key'
 
 
 # Set the strategy details and trading parameters
 strategy = "EMA Crossover Python"
-symbol = "BHEL"  # OpenAlgo Symbol
+symbol = "BHEL"  # AlgoWays Symbol
 exchange = "NSE"
 product = "MIS"
 quantity = 1
@@ -68,7 +68,7 @@ def ema_strategy():
             end_date = datetime.now().strftime("%Y-%m-%d")
             start_date = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
 
-            # Fetch 1-minute historical data using OpenAlgo
+            # Fetch 1-minute historical data using AlgoWays
             df = client.history(
                 symbol=symbol,
                 exchange=exchange,

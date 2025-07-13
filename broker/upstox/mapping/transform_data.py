@@ -1,4 +1,4 @@
-#Mapping OpenAlgo API Request https://openalgo.in/docs
+#Mapping AlgoWays API Request https://algoways.in/docs
 #Mapping Upstox Broking Parameters https://upstox.com/developer/api-documentation/orders
 
 from utils.logging import get_logger
@@ -76,9 +76,9 @@ def map_product_type(product):
 
 def reverse_map_product_type(exchange,product):
     """
-    Reverse maps the broker product type to the OpenAlgo product type, considering the exchange.
+    Reverse maps the broker product type to the AlgoWays product type, considering the exchange.
     """
-    # Exchange to OpenAlgo product type mapping for 'D'
+    # Exchange to AlgoWays product type mapping for 'D'
     exchange_mapping_for_d = {
         "NSE": "CNC",
         "BSE": "CNC",
@@ -90,10 +90,10 @@ def reverse_map_product_type(exchange,product):
     
     # Reverse mapping based on product type and exchange
     if product == 'D':
-        openalgo_product = exchange_mapping_for_d.get(exchange)
-        if not openalgo_product:
+        algoways_product = exchange_mapping_for_d.get(exchange)
+        if not algoways_product:
             logger.warning(f"Could not reverse map product type 'D' for unknown exchange '{exchange}'.")
-        return openalgo_product
+        return algoways_product
     elif product == 'I':
         return "MIS"
     else:

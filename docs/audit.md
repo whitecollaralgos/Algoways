@@ -1,12 +1,12 @@
-# OpenAlgo Security Audit
+# AlgoWays Security Audit
 
 Date: 2025-05-11
 
-This document outlines a security audit performed on the OpenAlgo project. The audit aims to identify potential security vulnerabilities and provide recommendations for improvement.
+This document outlines a security audit performed on the AlgoWays project. The audit aims to identify potential security vulnerabilities and provide recommendations for improvement.
 
 ## Audit Scope
 
-The audit covers the following aspects of the OpenAlgo application:
+The audit covers the following aspects of the AlgoWays application:
 - Authentication and Authorization
 - Input Validation
 - Session Management
@@ -162,7 +162,7 @@ Details for each section will be filled in as the audit progresses.
 - **Security Best Practice Implemented:** Runs the application as a non-root user (`appuser`).
 - **Potential Issues/Recommendations:**
     - **`COPY . .` (High Priority):** The production stage uses `COPY --chown=appuser:appuser . .`, which copies the entire build context. This could include sensitive files (e.g., `.git`, local `.env` files if not gitignored/dockerignored), test files, etc. 
-        - **Recommendation:** Create a comprehensive `.dockerignore` file. Be more specific in `COPY` commands (e.g., copy only necessary app directories like `openalgo/`, `static/`, `templates/`).
+        - **Recommendation:** Create a comprehensive `.dockerignore` file. Be more specific in `COPY` commands (e.g., copy only necessary app directories like `algoways/`, `static/`, `templates/`).
     - **Lock Files:** If `uv sync` uses a lock file (e.g., `uv.lock`, `poetry.lock`), ensure it's copied to the builder stage before `uv sync` for reproducible builds. `pyproject.toml` should pin dependencies.
 
 **`start.sh` Analysis (Entrypoint Script):**

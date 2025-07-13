@@ -66,7 +66,7 @@ class User(Base):
         """Get the TOTP URI for QR code generation"""
         return pyotp.totp.TOTP(self.totp_secret).provisioning_uri(
             name=self.email,
-            issuer_name="OpenAlgo"
+            issuer_name="AlgoWays"
         )
     
     def verify_totp(self, token):

@@ -1,5 +1,5 @@
 """
-Flattrade broker WebSocket streaming implementation for OpenAlgo
+Flattrade broker WebSocket streaming implementation for AlgoWays
 """
 from .flattrade_adapter import FlattradeWebSocketAdapter
 

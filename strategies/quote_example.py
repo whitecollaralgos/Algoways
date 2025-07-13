@@ -1,8 +1,8 @@
 """
-OpenAlgo WebSocket Quote Feed Example
+AlgoWays WebSocket Quote Feed Example
 """
 
-from openalgo import api
+from algoways import api
 import time
 
 # Initialize feed client with explicit parameters

@@ -1,11 +1,11 @@
 services:
-  openalgo:
-    image: openalgo:latest
+  algoways:
+    image: algoways:latest
     build:
       context: .
       dockerfile: Dockerfile
 
-    container_name: openalgo-web
+    container_name: algoways-web
     ports:
       - "${FLASK_PORT:-5000}:5000"
 

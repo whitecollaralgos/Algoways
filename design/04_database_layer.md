@@ -1,10 +1,10 @@
 # Database Layer
 
-The database layer is responsible for data persistence and retrieval within OpenAlgo. It interacts with the underlying database to store user information, broker credentials, trading activity, logs, and other relevant data.
+The database layer is responsible for data persistence and retrieval within AlgoWays. It interacts with the underlying database to store user information, broker credentials, trading activity, logs, and other relevant data.
 
 ## ORM and Library
 
-*   **SQLAlchemy:** OpenAlgo utilizes SQLAlchemy as its primary Object-Relational Mapper (ORM). SQLAlchemy provides a high-level API for interacting with relational databases, allowing developers to work with Python objects instead of writing raw SQL queries for most operations.
+*   **SQLAlchemy:** AlgoWays utilizes SQLAlchemy as its primary Object-Relational Mapper (ORM). SQLAlchemy provides a high-level API for interacting with relational databases, allowing developers to work with Python objects instead of writing raw SQL queries for most operations.
 *   **Flask-SQLAlchemy:** While not explicitly seen in `extensions.py`, the presence of `Flask-SQLAlchemy` in `requirements.txt` and the pattern of initializing databases within the app context strongly suggest its use. This extension integrates SQLAlchemy smoothly with Flask, managing sessions and configurations tied to the Flask application context.
 
 ## Database Structure and Models
@@ -28,7 +28,7 @@ The database layer is responsible for data persistence and retrieval within Open
 
 *   **Configuration:** The database connection string is configured via the `DATABASE_URL` environment variable.
 *   **Engine:** SQLAlchemy uses an `Engine` object to manage connections to the database.
-*   **Connection Pooling:** As per previous optimizations, OpenAlgo utilizes SQLAlchemy's built-in connection pooling to improve performance and resource management. Key configurations (set via environment variables):
+*   **Connection Pooling:** As per previous optimizations, AlgoWays utilizes SQLAlchemy's built-in connection pooling to improve performance and resource management. Key configurations (set via environment variables):
     *   `DB_POOL_SIZE`: The initial number of connections kept open in the pool.
     *   `DB_MAX_OVERFLOW`: The number of additional connections that can be opened beyond `DB_POOL_SIZE` under load.
     *   `DB_POOL_TIMEOUT`: The time (in seconds) to wait for a connection from the pool before timing out.

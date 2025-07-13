@@ -3,7 +3,7 @@ from utils.logging import get_logger
 logger = get_logger(__name__)
 
 """
-Shoonya WebSocket adapter for OpenAlgo WebSocket proxy
+Shoonya WebSocket adapter for AlgoWays WebSocket proxy
 """
 import threading
 import sys
@@ -52,8 +52,8 @@ class ShoonyaWebSocketAdapter(BaseBrokerWebSocketAdapter):
         api_key = os.getenv('BROKER_API_KEY')
         self.user_id = api_key[:-2] if api_key else None
         self.actid = self.user_id
-        # susertoken from DB for OpenAlgo username (not broker user)
-        self.logger.info(f"[DEBUG] Fetching susertoken for OpenAlgo username: {user_id}")
+        # susertoken from DB for AlgoWays username (not broker user)
+        self.logger.info(f"[DEBUG] Fetching susertoken for AlgoWays username: {user_id}")
         self.susertoken = get_auth_token(user_id)
         self.logger.info(f"[Shoonya Adapter] user_id: {self.user_id}, actid: {self.actid}, susertoken: {self.susertoken}")
         if not self.actid or not self.susertoken:
@@ -322,7 +322,7 @@ class ShoonyaWebSocketAdapter(BaseBrokerWebSocketAdapter):
             self._reconnect()
 
     def _generate_topic(self, exchange: str, symbol: str, mode_str: str) -> str:
-        # Publish as {exchange}_{symbol}_{mode_str} to match OpenAlgo proxy expectation
+        # Publish as {exchange}_{symbol}_{mode_str} to match AlgoWays proxy expectation
         return f"{exchange}_{symbol}_{mode_str}"
 
     def _normalize_market_data(self, data, t, mode=None) -> Dict[str, Any]:

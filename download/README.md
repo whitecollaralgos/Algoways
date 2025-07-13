@@ -1,12 +1,12 @@
 # IEOD Data Downloader
 
-This tool allows you to download Intraday End of Day (IEOD) data for specified stock symbols from the OpenAlgo API.
+This tool allows you to download Intraday End of Day (IEOD) data for specified stock symbols from the AlgoWays API.
 
 ## Prerequisites
 
 - Python 3.x
-- Valid OpenAlgo API key
-- Access to OpenAlgo API endpoint (ensure openalgo is running)
+- Valid AlgoWays API key
+- Access to AlgoWays API endpoint (ensure algoways is running)
 
 ## File Structure
 
@@ -17,7 +17,7 @@ This tool allows you to download Intraday End of Day (IEOD) data for specified s
 
 ## Setup
 
-1. Ensure you have a valid API key from OpenAlgo
+1. Ensure you have a valid API key from AlgoWays
 2. Place your stock symbols in `symbols.csv` (one symbol per line)
 3. The script will automatically create necessary folders and files
 

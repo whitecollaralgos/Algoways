@@ -1,8 +1,8 @@
 {
     "Plugin Name": "fivepaisa",
-    "Plugin URI": "https://openalgo.in",
-    "Description": "5paisa OpenAlgo Plugin",
+    "Plugin URI": "https://algoways.in",
+    "Description": "5paisa AlgoWays Plugin",
     "Version": "1.0",
     "Author": "Rajandran R",
-    "Author URI": "https://openalgo.in"
+    "Author URI": "https://algoways.in"
 }

@@ -1,7 +1,7 @@
-venopenalgo
+venalgoways
 .venv/
 .env
-openalgo.db
+algoways.db
 .env
 .flaskenv
 *.pyc

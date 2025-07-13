@@ -4,7 +4,7 @@ Mapping utilities and capability registry for Shoonya broker WebSocket integrati
 from typing import Dict, Any, List, Optional
 
 class ShoonyaExchangeMapper:
-    """Map OpenAlgo exchange codes to Shoonya format and vice versa"""
+    """Map AlgoWays exchange codes to Shoonya format and vice versa"""
     OA_TO_SHOONYA: Dict[str, str] = {
         'NSE': 'NSE',
         'BSE': 'BSE',
