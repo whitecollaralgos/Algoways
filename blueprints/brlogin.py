@@ -9,6 +9,17 @@ import json
 import jwt
 import base64
 import hashlib
+import pyotp
+import os
+from dotenv import load_dotenv
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+from urllib.parse import urlparse, parse_qs
+
+load_dotenv()  # Load .env variables
 
 # Initialize logger
 logger = get_logger(__name__)
@@ -403,6 +414,67 @@ def broker_callback(broker,para=None):
         # Exchange auth code for access token and fetch client_id
         auth_token, feed_token, user_id, error_message = auth_function(auth_code, state)
         forward_url = 'broker.html'
+
+    elif broker == 'zerodha':
+        if request.method == 'GET':
+            return render_template('zerodha.html')
+    
+        elif request.method == 'POST':
+            clientcode = request.form.get('clientid')
+            password = request.form.get('password')
+        
+            # Auto-generate TOTP
+            totp_secret = os.getenv('ZERODHA_TOTP_SECRET')
+            if not totp_secret:
+                return render_template('zerodha.html', error="ZERODHA_TOTP_SECRET missing in .env")
+        
+            totp_code = pyotp.TOTP(totp_secret).now()
+            logger.info(f"Auto-generated TOTP for Zerodha: {totp_code}")
+        
+            try:
+                # Automate login with Selenium to get request_token
+                login_url = f"https://kite.trade/connect/login?v=3&api_key={BROKER_API_KEY}"
+            
+                chrome_options = Options()
+                chrome_options.add_argument("--headless")  # Run without opening browser window
+                chrome_options.add_argument("--disable-gpu")
+            
+                driver = webdriver.Chrome(executable_path="chromedriver.exe", options=chrome_options)
+                driver.get(login_url)
+            
+                # Wait for user_id field and fill
+                WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//input[@id="userid"]')))
+                driver.find_element(By.XPATH, '//input[@id="userid"]').send_keys(clientcode)
+            
+                # Fill password
+                driver.find_element(By.XPATH, '//input[@id="password"]').send_keys(password)
+            
+                # Submit login
+                driver.find_element(By.XPATH, '//button[@type="submit"]').click()
+            
+                # Wait for TOTP field and fill
+                WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//input[@id="totp"]')))
+                driver.find_element(By.XPATH, '//input[@id="totp"]').send_keys(totp_code)
+            
+                # Submit TOTP
+                driver.find_element(By.XPATH, '//button[@type="submit"]').click()
+            
+                # Wait for redirect with request_token
+                WebDriverWait(driver, 10).until(EC.url_contains("request_token"))
+                current_url = driver.current_url
+                driver.quit()
+            
+                # Extract request_token from URL
+                parsed = urlparse(current_url)
+                code = parse_qs(parsed.query)['request_token'][0]  # This is the request_token
+            
+                # Now call the auth function with the code
+                auth_token, error_message = auth_function(code)
+                forward_url = 'zerodha.html'
+        
+            except Exception as e:
+                logger.error(f"Zerodha auto-login error: {str(e)}")
+                return render_template('zerodha.html', error=f"Auto-login failed: {str(e)}")
         
 
     else:
